@@ -31,14 +31,15 @@ public class PrenotazioniService {
         PrR.save(newPrenotazione);
     }
 
-    public boolean ControlloPostazione(LocalDate data1, Postazione postazione) {
-        boolean controlloData = postazione.prenotazioniList().stream().anyMatch(prenotazioni -> prenotazioni.data().equals(data1));
-        if (controlloData) {
-            return false;
-        } else {
-            return true;
+    public List<Prenotazioni> ControlloPostazione(LocalDate data1, Postazione postazione) {
+        try {
+            return PrR.findAll().stream().filter(prenotazioni -> prenotazioni.data().equals(data1) && prenotazioni.postazione_id().equals(postazione)).collect(Collectors.toList());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Collections.emptyList();
         }
     }
+
 
     public void SalvaPrenotazione(LocalDate data, Utente utente, Prenotazioni newPrenotazione) {
         try {
@@ -65,7 +66,7 @@ public class PrenotazioniService {
 
     public void prenotaPostazione(LocalDate data, Postazione postazione, Prenotazioni newPrenotazione) {
         try {
-            if (ControlloPostazione(data, postazione)) {
+            if (ControlloPostazione(data, postazione).isEmpty()) {
                 savePrenotazione(newPrenotazione);
                 System.out.println("Prenotazione effettuata");
             } else {

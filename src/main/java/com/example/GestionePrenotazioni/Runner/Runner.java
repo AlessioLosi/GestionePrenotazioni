@@ -85,5 +85,9 @@ public class Runner implements CommandLineRunner {
 
         ps.FindPostazioni("Milano", TipoPostazione.OPENSPACE).forEach(System.out::println);
 
+        Prenotazioni prenotazione12 = new Prenotazioni(LocalDate.now(), utente1, postazione3);
+        prs.SalvaPrenotazione(LocalDate.now(), utente1, prenotazione12);
+
+
     }
 }

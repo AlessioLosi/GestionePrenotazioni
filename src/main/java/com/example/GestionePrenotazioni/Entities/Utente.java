@@ -1,9 +1,6 @@
 package com.example.GestionePrenotazioni.Entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.List;
 
@@ -15,6 +12,7 @@ public class Utente {
     protected String username;
     protected String nome;
     protected String cognome;
+    @Column(nullable = false)
     protected String email;
     @OneToMany(mappedBy = "utente_id")
     private List<Prenotazioni> prenotazioniList;

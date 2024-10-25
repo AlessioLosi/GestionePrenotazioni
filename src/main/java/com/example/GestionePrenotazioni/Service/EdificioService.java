@@ -1,5 +1,6 @@
 package com.example.GestionePrenotazioni.Service;
 
+import com.example.GestionePrenotazioni.Entities.Edificio;
 import com.example.GestionePrenotazioni.Repository.EdificiRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,4 +11,10 @@ import org.springframework.stereotype.Service;
 public class EdificioService {
     @Autowired
     private EdificiRepository ER;
+
+
+    public void saveEdificio(Edificio newEdificio) {
+
+        ER.save(newEdificio);
+    }
 }

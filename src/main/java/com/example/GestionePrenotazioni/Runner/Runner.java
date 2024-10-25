@@ -11,6 +11,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Component
 @Slf4j
@@ -31,10 +32,10 @@ public class Runner implements CommandLineRunner {
         Utente utente2 = new Utente("ERAS", "Taylor", "Swift", "taylor@swift.com");
         Utente utente3 = new Utente("SWEET", "Sabrina", "Carpenter", "sabrina@carpenter.com");
         Utente utente4 = new Utente("TSOU", "Gracie", "Abrams", "gracie@abrams.com");
-        // us.saveUser(utente1);
-        // us.saveUser(utente2);
-        // us.saveUser(utente3);
-        // us.saveUser(utente4);
+        us.saveUser(utente1);
+        us.saveUser(utente2);
+        us.saveUser(utente3);
+        us.saveUser(utente4);
 
         Edificio edificio1 = new Edificio("Edificio 1", "Via Trieste", "Milano");
         Edificio edificio2 = new Edificio("Edificio 2", "Via Roma", "Torino");
@@ -78,6 +79,13 @@ public class Runner implements CommandLineRunner {
         prs.savePrenotazione(prenotazione3);
         prs.savePrenotazione(prenotazione4);
         prs.savePrenotazione(prenotazione5);
+
+        Prenotazioni prenotazione6 = new Prenotazioni(LocalDate.now(), utente3, postazione10);
+        prs.prenotaPostazione(LocalDate.now(), postazione10, prenotazione6);
+
+
+        List<Postazione> postazioneList = ps.findPostazioni(TipoPostazione.OPENSPACE, "Milano");
+        postazioneList.forEach(System.out::println);
 
     }
 }

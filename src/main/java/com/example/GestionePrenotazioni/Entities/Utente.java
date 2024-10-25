@@ -35,6 +35,14 @@ public class Utente {
         this.username = username;
     }
 
+    public List<Prenotazioni> prenotazioniList() {
+        return prenotazioniList;
+    }
+
+    public void setPrenotazioniList(List<Prenotazioni> prenotazioniList) {
+        this.prenotazioniList = prenotazioniList;
+    }
+
     public String nome() {
         return nome;
     }

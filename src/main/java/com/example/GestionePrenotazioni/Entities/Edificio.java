@@ -13,7 +13,7 @@ public class Edificio {
     protected String nome;
     protected String indirizzo;
     protected String città;
-    @OneToMany(mappedBy = "edificio_id")
+    @OneToMany(mappedBy = "edificio")
     private List<Postazione> postazioneList;
 
     public Edificio() {
@@ -35,6 +35,14 @@ public class Edificio {
 
     public String nome() {
         return nome;
+    }
+
+    public List<Postazione> postazioneList() {
+        return postazioneList;
+    }
+
+    public void setPostazioneList(List<Postazione> postazioneList) {
+        this.postazioneList = postazioneList;
     }
 
     public void setNome(String nome) {

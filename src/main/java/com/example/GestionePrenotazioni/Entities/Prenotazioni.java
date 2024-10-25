@@ -10,12 +10,12 @@ public class Prenotazioni {
     @Id
     @GeneratedValue
     protected Long id;
-    protected LocalDate data;
+    private LocalDate data;
     @ManyToOne
     @JoinColumn(name = "utente")
     private Utente utente_id;
     @ManyToOne
-    @JoinColumn(name = "postazione")
+    @JoinColumn(name = "postazione_id")
     private Postazione postazione_id;
 
     public Prenotazioni() {

@@ -10,15 +10,16 @@ import java.util.List;
 public class Postazione {
     @Id
     @GeneratedValue
-    protected Long id;
-    protected String descrizione;
-    protected int numeroMaxPartecipanti;
-    protected TipoPostazione tipoPostazione;
+    private Long id;
+    private String descrizione;
+    private int numeroMaxPartecipanti;
+    @Enumerated(EnumType.STRING)
+    private TipoPostazione tipoPostazione;
     @ManyToOne
-    @JoinColumn(name = "edificio")
-    private Edificio edificio_id;
+    @JoinColumn(name = "edificio_id")
+    private Edificio edificio;
     @OneToMany(mappedBy = "postazione_id")
-    private List<Prenotazioni> postazioneList;
+    private List<Prenotazioni> prenotazioniList;
 
     public Postazione() {
     }
@@ -27,11 +28,19 @@ public class Postazione {
         this.descrizione = descrizione;
         this.numeroMaxPartecipanti = numeroMaxPartecipanti;
         this.tipoPostazione = tipoPostazione;
-        this.edificio_id = edificio_id;
+        this.edificio = edificio;
     }
 
     public Long id() {
         return id;
+    }
+
+    public List<Prenotazioni> prenotazioniList() {
+        return prenotazioniList;
+    }
+
+    public void setPrenotazioniList(List<Prenotazioni> prenotazioniList) {
+        this.prenotazioniList = prenotazioniList;
     }
 
     public void setId(Long id) {
@@ -62,12 +71,12 @@ public class Postazione {
         this.tipoPostazione = tipoPostazione;
     }
 
-    public Edificio edificio_id() {
-        return edificio_id;
+    public Edificio edificio() {
+        return edificio;
     }
 
-    public void setEdificio_id(Edificio edificio_id) {
-        this.edificio_id = edificio_id;
+    public void setEdificio_id(Edificio edificio) {
+        this.edificio = edificio;
     }
 
     @Override
@@ -77,7 +86,7 @@ public class Postazione {
                 ", descrizione='" + descrizione + '\'' +
                 ", numeroMaxPartecipanti=" + numeroMaxPartecipanti +
                 ", tipoPostazione=" + tipoPostazione +
-                ", edificio_id=" + edificio_id +
+                ", edificio_id=" + edificio +
                 '}';
     }
 }

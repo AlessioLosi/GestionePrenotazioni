@@ -3,17 +3,17 @@ package com.example.GestionePrenotazioni.Service;
 import com.example.GestionePrenotazioni.Entities.Postazione;
 import com.example.GestionePrenotazioni.Entities.TipoPostazione;
 import com.example.GestionePrenotazioni.Repository.PostazioniRepository;
-import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
-@Slf4j
 public class PostazioniService {
     private static final Logger log = LoggerFactory.getLogger(PrenotazioniService.class);
     @Autowired
@@ -24,13 +24,13 @@ public class PostazioniService {
         PR.save(newPostazione);
     }
 
-    public List<Postazione> findPostazioni(TipoPostazione tipo, String citta) {
+    public List<Postazione> FindPostazioni(String città1, TipoPostazione tipo) {
         try {
-            return PR.findByCittaETipo(citta, tipo);
+            return PR.findAll().stream().filter(postazione -> postazione.edificio().città().equals(città1) && postazione.tipoPostazione().equals(tipo)).collect(Collectors.toList());
         } catch (Exception e) {
-            log.error("Non è stato trovato nessun elemento", e);
-            ;
-            return List.of();
+            e.printStackTrace();
+            return Collections.emptyList();
         }
     }
+
 }

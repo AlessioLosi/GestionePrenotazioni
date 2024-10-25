@@ -11,7 +11,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Component
 @Slf4j
@@ -80,12 +79,11 @@ public class Runner implements CommandLineRunner {
         prs.savePrenotazione(prenotazione4);
         prs.savePrenotazione(prenotazione5);
 
-        Prenotazioni prenotazione6 = new Prenotazioni(LocalDate.now(), utente3, postazione10);
-        prs.prenotaPostazione(LocalDate.now(), postazione10, prenotazione6);
+        // Prenotazioni prenotazione6 = new Prenotazioni(LocalDate.now(), utente3, postazione10);
+        // prs.prenotaPostazione(LocalDate.now(), postazione10, prenotazione6);
 
 
-        List<Postazione> postazioneList = ps.findPostazioni(TipoPostazione.OPENSPACE, "Milano");
-        postazioneList.forEach(System.out::println);
+        ps.FindPostazioni("Milano", TipoPostazione.OPENSPACE).forEach(System.out::println);
 
     }
 }

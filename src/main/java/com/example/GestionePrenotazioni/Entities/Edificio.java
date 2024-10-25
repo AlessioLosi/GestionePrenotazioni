@@ -13,7 +13,7 @@ public class Edificio {
     protected String nome;
     protected String indirizzo;
     protected String città;
-    @OneToMany(mappedBy = "edificio")
+    @OneToMany(mappedBy = "edificio_id")
     private List<Postazione> postazioneList;
 
     public Edificio() {

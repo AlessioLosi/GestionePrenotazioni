@@ -16,8 +16,8 @@ public class Postazione {
     @Enumerated(EnumType.STRING)
     private TipoPostazione tipoPostazione;
     @ManyToOne
-    @JoinColumn(name = "edificio_id")
-    private Edificio edificio;
+    @JoinColumn(name = "edificio")
+    private Edificio edificio_id;
     @OneToMany(mappedBy = "postazione_id")
     private List<Prenotazioni> prenotazioniList;
 
@@ -28,7 +28,7 @@ public class Postazione {
         this.descrizione = descrizione;
         this.numeroMaxPartecipanti = numeroMaxPartecipanti;
         this.tipoPostazione = tipoPostazione;
-        this.edificio = edificio;
+        this.edificio_id = edificio_id;
     }
 
     public Long id() {
@@ -72,11 +72,11 @@ public class Postazione {
     }
 
     public Edificio edificio() {
-        return edificio;
+        return edificio_id;
     }
 
     public void setEdificio_id(Edificio edificio) {
-        this.edificio = edificio;
+        this.edificio_id = edificio;
     }
 
     @Override
@@ -86,7 +86,7 @@ public class Postazione {
                 ", descrizione='" + descrizione + '\'' +
                 ", numeroMaxPartecipanti=" + numeroMaxPartecipanti +
                 ", tipoPostazione=" + tipoPostazione +
-                ", edificio_id=" + edificio +
+                ", edificio_id=" + edificio_id +
                 '}';
     }
 }
